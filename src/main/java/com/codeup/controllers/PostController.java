@@ -1,24 +1,33 @@
 package com.codeup.controllers;
 
+import com.codeup.Post;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class PostController {
+  List<Post> posts = new ArrayList<>();
+
 
   @RequestMapping(value = "/posts", method = RequestMethod.GET)
-  @ResponseBody
-  public String posts() {
-    return "posts index page";
+  public String posts(Model model) {
+
+   posts.add(new Post("testing title", "testing body"));
+    posts.add(new Post("testing title", "testing body"));
+    model.addAttribute("post",posts);
+    return "posts/index";
   }
 
   @RequestMapping(value = "/posts/{id}", method = RequestMethod.GET)
-  @ResponseBody
   public String postById(@PathVariable int id) {
-    return "viewing an individual post";
+    return "posts/show";
   }
 
   @RequestMapping(value = "/posts/create", method = RequestMethod.GET)
