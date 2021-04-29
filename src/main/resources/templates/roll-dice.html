@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8" />
-  <title>Dice Game</title>
-</head>
+<head th:replace="partials/head :: head" />
 <body>
 <nav th:replace="partials/navbar :: navbar" />
-<h1>Pick a number. If the dice roll matches your number you win!</h1>
-
-<form action="/roll-dice" method="get">
-  <div><a th:href="@{/roll-dice/1}">1</a></div>
-  <div><a th:href="@{/roll-dice/2}">2</a></div>
-  <div><a th:href="@{/roll-dice/3}">3</a></div>
-  <div><a th:href="@{/roll-dice/4}">4</a></div>
-  <div><a th:href="@{/roll-dice/5}">5</a></div>
-  <div><a th:href="@{/roll-dice/6}">6</a></div>
-  <div th:if${isCorrect}>
-    <h1><span th:text="${correctRoll}"></span> </h1>
-    <h1><span th:text="${incorrectRoll}"></span> </h1>
-
-  </div>
-</form>
-
+<div class="container text-center">
+  <h3>Pick a number</h3>
+  <h3>If the dice roll matches your number you win!</h3>
+      <form action="/roll-dice" method="get">
+        <a class="btn btn-primary" th:href="@{/roll-dice/1}" role="button">1</a>
+        <a class="btn btn-primary" th:href="@{/roll-dice/2}" role="button">2</a>
+        <a class="btn btn-primary" th:href="@{/roll-dice/3}" role="button">3</a>
+        <a class="btn btn-primary" th:href="@{/roll-dice/4}" role="button">4</a>
+        <a class="btn btn-primary" th:href="@{/roll-dice/5}" role="button">5</a>
+        <a class="btn btn-primary" th:href="@{/roll-dice/6}" role="button">6</a>
+        <div th:if${isCorrect}>
+          <h5><span th:text="${correctRoll}"></span> </h5>
+          <h5><span th:text="${incorrectRoll}"></span> </h5>
+        </div>
+      </form>
+</div>
+<footer th:replace="partials/footer :: footer" />
 </body>
 </html>
