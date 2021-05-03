@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
+<head th:replace="partials/head :: head('Doggo')"></head>
 <body>
-<div class="container">
-  <div th:each="dog : ${dogs}">
-    <h3 th:text="${dog.name}"></h3>
-    <h5 th:text="${dog.age}"></h5>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<main class="container px-5 py-4">
+  <div class="row">
+  <div class="card m-4 d-none d-md-flex text-center" style="width: 18rem;" th:each="dog : ${dogs}">
+    <div class="card-header">
+      <h3 class="text-center" th:text="${dog.name}"></h3>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item text-center">Location:<h5 th:text="${dog.resideState}"></h5></li>
+      <li class="list-group-item text-center">Age: <h5 th:text="${dog.age}"></h5></li>
+    </ul>
+  </div>
 
   </div>
-</div>
+</main>
+<th:block th:replace="partials/scripts :: scripts"></th:block>
 </body>
 </html>
