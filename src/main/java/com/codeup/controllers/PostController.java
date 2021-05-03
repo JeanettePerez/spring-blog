@@ -1,12 +1,10 @@
 package com.codeup.controllers;
 
-import com.codeup.Post;
+import com.codeup.models.Post;
+import com.codeup.repositories.PostRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,19 +12,28 @@ import java.util.List;
 @Controller
 public class PostController {
   List<Post> posts = new ArrayList<>();
+  private final PostRepository postDao;
 
+  public PostController(PostRepository postDao) {
+    this.postDao = postDao;
+  }
 
   @RequestMapping(value = "/posts", method = RequestMethod.GET)
   public String posts(Model model) {
-
-   posts.add(new Post("testing title", "testing body"));
-    posts.add(new Post("testing title", "testing body"));
-    model.addAttribute("post",posts);
+    model.addAttribute("post",postDao.findAll());
     return "posts/index";
   }
 
-  @RequestMapping(value = "/posts/{id}", method = RequestMethod.GET)
-  public String postById(@PathVariable int id) {
+//  @RequestMapping(value = "/posts/{id}", method = RequestMethod.GET)
+  @PostMapping("/posts/{id}")
+  public String postById(@PathVariable long id, Model model) {
+
+
+    Post postTwo = new Post();
+    postTwo.setTitle("two");
+    postTwo.setBody("body2");
+    postDao.save(postTwo);
+    model.addAttribute("post", postDao.getOne(id));
     return "posts/show";
   }
 
