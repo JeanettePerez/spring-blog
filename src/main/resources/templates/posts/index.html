@@ -5,9 +5,9 @@
   <title>Title</title>
 </head>
 <body>
-<div th:each="posts : ${post}">
-<h1 th:text="${posts.title}"></h1>
-<h1 th:text="${posts.body}"></h1>
+<div th:each="post : ${post}">
+<h1 th:text="${post.title}"></h1>
+<h1 th:text="${post.body}"></h1>
 
 </div>
 </body>
