@@ -4,7 +4,7 @@ package com.codeup.models;
 import javax.persistence.*;
 
 @Entity
-//@Table(name = "posts")
+@Table(name = "posts")
 public class Post {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +13,7 @@ public class Post {
   @Column(nullable = false)
   private String title;
 
-  @Column(nullable = false)
+  @Column(nullable = false, columnDefinition = "TEXT")
   private String body;
 
 
