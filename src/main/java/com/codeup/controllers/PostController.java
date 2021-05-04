@@ -1,17 +1,18 @@
 package com.codeup.controllers;
 
+
 import com.codeup.models.Post;
 import com.codeup.repositories.PostRepository;
+import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Controller
 public class PostController {
-  List<Post> posts = new ArrayList<>();
+
   private final PostRepository postDao;
 
   public PostController(PostRepository postDao) {
@@ -25,27 +26,54 @@ public class PostController {
   }
 
 //  @RequestMapping(value = "/posts/{id}", method = RequestMethod.GET)
-  @PostMapping("/posts/{id}")
+  @GetMapping("/posts/{id}")
   public String postById(@PathVariable long id, Model model) {
-
-
-    Post postTwo = new Post();
-    postTwo.setTitle("two");
-    postTwo.setBody("body2");
-    postDao.save(postTwo);
     model.addAttribute("post", postDao.getOne(id));
     return "posts/show";
   }
 
-  @RequestMapping(value = "/posts/create", method = RequestMethod.GET)
-  @ResponseBody
-  public String createPost() {
-    return "view the form for creating a post";
+  @GetMapping(value = "/posts/create")
+  public String createPost(Model model) {
+    model.addAttribute("createForm", new Post());
+//    Post post = new Post();
+//    post.setTitle("Movie Test2");
+//    post.setBody("body of movie test2");
+//    postDao.save(post);
+    return "posts/create";
   }
 
-  @RequestMapping(value = "posts/create", method = RequestMethod.POST)
-  @ResponseBody
-  public String createPostSent() {
-    return "create a new post";
+  @PostMapping("/posts/create")
+  public String createPostResults(@ModelAttribute("createForm") Post post) {
+    postDao.save(post);
+    return "redirect:/posts";
   }
+
+
+  @GetMapping("/posts/update/{id}")
+  public String UpdatePost(@PathVariable("id") long id, Model model) {
+    model.addAttribute("updatePost",postDao.getOne(id));
+    return "posts/update";
+  }
+
+  @PostMapping("/posts/update/{id}")
+  public String UpdatePostResults(@ModelAttribute("updatePost") Post post) {
+    postDao.save(post);
+    return "redirect:/posts";
+  }
+
+  @GetMapping("/posts/delete/{id}")
+  public String deletePost(@PathVariable("id") long id) {
+    postDao.deleteById(id);
+    return "redirect:/posts";
+  }
+//  @RequestMapping(value = "posts/create", method = RequestMethod.POST)
+//  @ResponseBody
+//  public String createPostSent() {
+//    return "create a new post";
+//  }
+
+//  @PostMapping("/posts/delete")
+//  public String deletePost() {
+//
+//  }
 }
