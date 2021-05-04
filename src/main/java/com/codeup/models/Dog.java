@@ -16,10 +16,10 @@ public class Dog {
   @Column(nullable = false, columnDefinition = "TINYINT(3) UNSIGNED", length = 3, unique = true)
   private int age;
 
-  @Column(name = "name", nullable = false, length = 200)
+  @Column(nullable = false, length = 200)
   private String name;
 
-  @Column(name = "resideState", columnDefinition = "char(2) DEFAULT 'XX'")
+  @Column(columnDefinition = "char(2) DEFAULT 'XX'")
   private String resideState;
 
 
