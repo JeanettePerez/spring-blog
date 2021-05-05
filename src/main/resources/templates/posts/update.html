@@ -3,7 +3,7 @@
   <head th:replace="partials/head :: head('edit post')"></head>
   <body>
     <nav th:replace="partials/navbar :: navbar"></nav>
-    <form th:action="@{/posts/update/{id}(id=${updatePost.id})}" method="post" th:object="${updatePost}">
+    <form th:action="@{/posts/update/{id}(id=${updatePost.id})}" th:method="post" th:object="${updatePost}">
       <div class="form-group">
         <input class="form-control" type="text" th:field="*{title}" placeholder="update Movie Title">
         <input class="form-control" type="text" th:field="*{body}" placeholder="update Description">
