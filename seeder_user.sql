@@ -1,0 +1,10 @@
+insert into users (email, username, password) values ('hbraithwaite0@example.com', 'ryerbury0', 'BcIoPQ85Ow');
+insert into users (email, username, password) values ('fmacclay1@yolasite.com', 'fyackiminie1', 'o52xYftl6U');
+insert into users (email, username, password) values ('bshitliffe2@gnu.org', 'tablitt2', 'HNh8NRwlSZ');
+insert into users (email, username, password) values ('swaldram3@opera.com', 'hgodin3', 'B2WLGTgeHQiB');
+insert into users (email, username, password) values ('elilbourne4@de.vu', 'onorthall4', 'wWmyLTqSSV');
+insert into users (email, username, password) values ('cdegliabbati5@indiegogo.com', 'tledington5', 'yKhavTr5s');
+insert into users (email, username, password) values ('rofford6@bravesites.com', 'ihazzard6', 'nW1bpO5zXaX');
+insert into users (email, username, password) values ('krenoden7@irs.gov', 'bhorsey7', '9xUEZmZnP');
+insert into users (email, username, password) values ('dedwick8@newsvine.com', 'bshovelin8', '63f52C');
+insert into users (email, username, password) values ('pbotterill9@telegraph.co.uk', 'kcarlson9', 'FrhntFXrOx');
