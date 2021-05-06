@@ -10,13 +10,14 @@ public class PostDetails {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-//  @Column(nullable = false)
+  @Column(nullable = false)
   private boolean isAwesome;
 
   @Column(columnDefinition = "TEXT")
   private String historyOfPost;
 
-//  @Column(nullable = false)
+
+  @Column(nullable = false)
   private String topicDescription;
 
 
@@ -44,7 +45,7 @@ public class PostDetails {
     this.id = id;
   }
 
-  public boolean isAwesome() {
+  public boolean getIsAwesome() {
     return isAwesome;
   }
 

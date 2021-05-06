@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
+<head th:replace="partials/head :: head('post')"></head>
 <body>
-<h3 th:text="${post.title}"></h3>
+<nav th:replace="partials/navbar :: navbar"></nav>
+<h3>Post Title</h3>
+<div th:text="${post.title}"></div>
+<h3>Post history</h3>
+<div th:text="${post.postDetails.historyOfPost}"></div>
 </body>
 </html>
+

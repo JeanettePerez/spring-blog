@@ -3,7 +3,6 @@ package com.codeup.controllers;
 
 import com.codeup.models.Post;
 import com.codeup.repositories.PostRepository;
-import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +14,11 @@ public class PostController {
 
   private final PostRepository postDao;
 
+
   public PostController(PostRepository postDao) {
     this.postDao = postDao;
   }
+
 
   @RequestMapping(value = "/posts", method = RequestMethod.GET)
   public String posts(Model model) {
@@ -67,10 +68,10 @@ public class PostController {
     return "redirect:/posts";
   }
 
-  @GetMapping("/posts/history")
-  @ResponseBody
-  public String postHistory(Post post) {
-    return String.valueOf(post.getPostDetails());
+  @GetMapping("/posts/show/{id}")
+  public String postHistory(@PathVariable long id, Model model) {
+    model.addAttribute("post",postDao.getOne(id));
+    return "posts/show";
   }
 
 //  @RequestMapping(value = "posts/create", method = RequestMethod.POST)
