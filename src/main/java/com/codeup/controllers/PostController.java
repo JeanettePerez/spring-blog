@@ -66,6 +66,13 @@ public class PostController {
     postDao.deleteById(id);
     return "redirect:/posts";
   }
+
+  @GetMapping("/posts/history")
+  @ResponseBody
+  public String postHistory(Post post) {
+    return String.valueOf(post.getPostDetails());
+  }
+
 //  @RequestMapping(value = "posts/create", method = RequestMethod.POST)
 //  @ResponseBody
 //  public String createPostSent() {
