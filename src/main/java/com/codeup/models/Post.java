@@ -2,6 +2,7 @@ package com.codeup.models;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -18,6 +19,9 @@ public class Post {
 
   @OneToOne
   private PostDetails postDetails;
+
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+  private List<PostImage> postImage;
 
 
   public Post(String title, String body, PostDetails postDetails) {
