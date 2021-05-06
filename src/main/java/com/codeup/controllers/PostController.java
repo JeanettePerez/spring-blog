@@ -3,6 +3,7 @@ package com.codeup.controllers;
 
 import com.codeup.models.Post;
 import com.codeup.repositories.PostRepository;
+import com.codeup.repositories.UserRepository;
 import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
 
   private final PostRepository postDao;
+  private final UserRepository userDao;
 
-  public PostController(PostRepository postDao) {
+  public PostController(PostRepository postDao, UserRepository userDao) {
     this.postDao = postDao;
+    this.userDao = userDao;
   }
 
   @RequestMapping(value = "/posts", method = RequestMethod.GET)
@@ -65,6 +68,12 @@ public class PostController {
   public String deletePost(@PathVariable("id") long id) {
     postDao.deleteById(id);
     return "redirect:/posts";
+  }
+
+  @GetMapping("/posts/show/{id}")
+  public String showPost(@PathVariable long id, Model model) {
+    model.addAttribute("post",postDao.getOne(id));
+    return "posts/show";
   }
 //  @RequestMapping(value = "posts/create", method = RequestMethod.POST)
 //  @ResponseBody
