@@ -11,10 +11,10 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
-  @Column(nullable = false)
+  @Column(nullable = false, unique = true)
   private String username;
 
-  @Column(nullable = false)
+  @Column(nullable = false, unique = true)
   private String email;
 
   @Column(nullable = false)
@@ -23,13 +23,6 @@ public class User {
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
   private List<Post> post;
 
-  public List<Post> getPost() {
-    return post;
-  }
-
-  public void setPost(List<Post> post) {
-    this.post = post;
-  }
 
   public User() {
   }
@@ -46,6 +39,14 @@ public class User {
     this.username = username;
     this.email = email;
     this.password = password;
+    this.post = post;
+  }
+
+  public List<Post> getPost() {
+    return post;
+  }
+
+  public void setPost(List<Post> post) {
     this.post = post;
   }
 
