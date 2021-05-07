@@ -3,7 +3,7 @@
 <head th:replace="partials/head :: head('Create Post')"></head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
-<form th:method="post" th:action="@{/posts/create}" th:object="${createForm}">
+<form th:method="post" th:action="@{/posts/create}" th:object="${createPost}">
   <div class="form-group">
     <input class="form-control" type="text" th:field="*{title}" placeholder="Enter Movie Title">
     <input class="form-control" type="text" th:field="*{body}" placeholder="Enter Description">
@@ -11,6 +11,6 @@
   </div>
 </form>
 
-<th:block th:replace="partials/scripts :: scripts"></th:block>
+<div th:replace="partials/scripts :: scripts"></div>
 </body>
 </html>

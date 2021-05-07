@@ -13,6 +13,6 @@
   <a th:href="@{/posts/update/{id}(id=${post.id})}" class="btn btn-primary">Edit</a>
   <a th:href="@{/posts/delete/{id}(id=${post.id})}" class="btn btn-danger">Delete</a>
 </div>
-<th:block th:replace="partials/scripts :: scripts"></th:block>
+<div th:replace="partials/scripts :: scripts"></div>
 </body>
 </html>
