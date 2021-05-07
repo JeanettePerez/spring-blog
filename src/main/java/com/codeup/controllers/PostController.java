@@ -4,7 +4,6 @@ package com.codeup.controllers;
 import com.codeup.models.Post;
 import com.codeup.repositories.PostRepository;
 import com.codeup.repositories.UserRepository;
-import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +27,6 @@ public class PostController {
     return "posts/index";
   }
 
-//  @RequestMapping(value = "/posts/{id}", method = RequestMethod.GET)
   @GetMapping("/posts/{id}")
   public String postById(@PathVariable long id, Model model) {
     model.addAttribute("post", postDao.getOne(id));
@@ -37,16 +35,12 @@ public class PostController {
 
   @GetMapping(value = "/posts/create")
   public String createPost(Model model) {
-    model.addAttribute("createForm", new Post());
-//    Post post = new Post();
-//    post.setTitle("Movie Test2");
-//    post.setBody("body of movie test2");
-//    postDao.save(post);
+    model.addAttribute("createPost", new Post());
     return "posts/create";
   }
 
   @PostMapping("/posts/create")
-  public String createPostResults(@ModelAttribute("createForm") Post post) {
+  public String createPostResults(@ModelAttribute("createPost") Post post) {
     postDao.save(post);
     return "redirect:/posts";
   }
@@ -75,14 +69,4 @@ public class PostController {
     model.addAttribute("post",postDao.getOne(id));
     return "posts/show";
   }
-//  @RequestMapping(value = "posts/create", method = RequestMethod.POST)
-//  @ResponseBody
-//  public String createPostSent() {
-//    return "create a new post";
-//  }
-
-//  @PostMapping("/posts/delete")
-//  public String deletePost() {
-//
-//  }
 }
