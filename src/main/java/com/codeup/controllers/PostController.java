@@ -4,6 +4,7 @@ package com.codeup.controllers;
 import com.codeup.models.Post;
 import com.codeup.repositories.PostRepository;
 import com.codeup.repositories.UserRepository;
+import com.codeup.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +16,12 @@ public class PostController {
 
   private final PostRepository postDao;
   private final UserRepository userDao;
+  private final EmailService emailService;
 
-  public PostController(PostRepository postDao, UserRepository userDao) {
+  public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService) {
     this.postDao = postDao;
     this.userDao = userDao;
+    this.emailService = emailService;
   }
 
   @RequestMapping(value = "/posts", method = RequestMethod.GET)
