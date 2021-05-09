@@ -16,6 +16,10 @@
       <div class="navbar-nav">
         <a class="nav-link active" href="/home">Home <span class="sr-only">(current)</span></a>
         <a class="nav-link" href="#">about</a>
+        <form th:action="@{/logout}" th:method="post">
+          <a class="nav-link" href="/login">Logout</a>
+        </form>
+
       </div>
     </div>
   </nav>
