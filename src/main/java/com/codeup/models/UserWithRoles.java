@@ -5,11 +5,15 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
 public class UserWithRoles extends User implements UserDetails {
 
   public UserWithRoles(User user) {
     super(user);
+  }
+
+  public UserWithRoles(User user, List<Object> emptyList) {
   }
 
   @Override
