@@ -3,7 +3,18 @@
 <head th:replace="partials/head :: head('Registration')"></head>
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
+<h1>Create an account</h1>
+<form th:action="@{/sign-up}" th:method="POST" th:object="${user}">
+  <label for="username">Username</label>
+  <input id="username" th:field="*{username}" />
 
+  <label for="email">Email</label>
+  <input id="email" th:field="*{email}" />
+
+  <label for="password">Password</label>
+  <input id="password" th:field="*{password}">
+  <input value="Sign up" type="submit">
+</form>
 
 
 
