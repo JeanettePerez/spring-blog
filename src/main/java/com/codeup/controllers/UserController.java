@@ -1,7 +1,10 @@
 package com.codeup.controllers;
 
+import com.codeup.models.Post;
 import com.codeup.models.User;
+import com.codeup.repositories.PostRepository;
 import com.codeup.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +17,12 @@ public class UserController {
 
   private UserRepository userDao;
   private PasswordEncoder passwordEncoder;
+  private PostRepository postDao;
 
-  public UserController(UserRepository userDao, PasswordEncoder passwordEncoder) {
+  public UserController(UserRepository userDao, PasswordEncoder passwordEncoder, PostRepository postDao) {
     this.userDao = userDao;
     this.passwordEncoder = passwordEncoder;
+    this.postDao = postDao;
   }
 
   @GetMapping("/sign-up")
@@ -32,6 +37,13 @@ public class UserController {
     user.setPassword(hash);
     userDao.save(user);
     return "redirect:/login";
+  }
+
+  @GetMapping("/profile")
+  public String userProfile(Model model) {
+    User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    model.addAttribute("post",postDao.findAllByUser(user));
+    return "users/profile";
   }
 
 
