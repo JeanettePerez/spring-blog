@@ -10,8 +10,9 @@
 <div class="card-body" th:each="post : ${post}">
   <h5 th:text="${post.title}" class="card-title"></h5>
   <p th:text="${post.body}" class="card-text"></p>
-  <a th:href="@{/posts/update/{id}(id=${post.id})}" class="btn btn-primary">Edit</a>
-  <a th:href="@{/posts/delete/{id}(id=${post.id})}" class="btn btn-danger">Delete</a>
+<!--  <a th:href="@{/posts/update/{id}(id=${post.id})}" class="btn btn-primary">Edit</a>-->
+<!--&lt;!&ndash;  <a th:href="@{/posts/delete/{id}(id=${post.id})}" class="btn btn-danger">Delete</a>&ndash;&gt;-->
+<!--  <div th:replace="partials/modalsUpdates :: modal"></div>-->
 </div>
 <div th:replace="partials/scripts :: scripts"></div>
 </body>
