@@ -2,6 +2,7 @@ package com.codeup.controllers;
 
 
 import com.codeup.models.Post;
+import com.codeup.models.User;
 import com.codeup.repositories.PostRepository;
 import com.codeup.repositories.UserRepository;
 import com.codeup.services.EmailService;
@@ -44,7 +45,12 @@ public class PostController {
 
   @PostMapping("/posts/create")
   public String createPostResults(@ModelAttribute("createPost") Post post) {
+    User author = userDao.getOne(1L);
+    post.setUser(author);
     postDao.save(post);
+
+
+    emailService.prepareAndSend(post,"Post Creation","Post created successfully");
     return "redirect:/posts";
   }
 
