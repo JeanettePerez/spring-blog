@@ -2,7 +2,7 @@ package com.codeup.services;
 
 import com.codeup.models.User;
 import com.codeup.models.UserWithRoles;
-import com.codeup.repositories.Users;
+import com.codeup.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,12 +11,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserDetailsLoader implements UserDetailsService {
 
-  private final Users users;
+  private final UserRepository users;
 
-  public UserDetailsLoader(Users users) {
+  public UserDetailsLoader(UserRepository users) {
     this.users = users;
   }
-
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
