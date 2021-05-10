@@ -6,6 +6,7 @@ import com.codeup.models.User;
 import com.codeup.repositories.PostRepository;
 import com.codeup.repositories.UserRepository;
 import com.codeup.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -45,11 +46,10 @@ public class PostController {
 
   @PostMapping("/posts/create")
   public String createPostResults(@ModelAttribute("createPost") Post post) {
-    User author = userDao.getOne(1L);
-    post.setUser(author);
+    User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    User creator = userDao.getOne(user.getId());
+    post.setUser(creator);
     postDao.save(post);
-
-
     emailService.prepareAndSend(post,"Post Creation","Post created successfully");
     return "redirect:/posts";
   }
