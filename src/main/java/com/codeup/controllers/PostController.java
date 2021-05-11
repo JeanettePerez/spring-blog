@@ -63,14 +63,17 @@ public class PostController {
 
   @PostMapping("/posts/update/{id}")
   public String UpdatePostResults(@ModelAttribute("updatePost") Post post) {
+    User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    User creator = userDao.getOne(user.getId());
+    post.setUser(creator);
     postDao.save(post);
-    return "redirect:/posts";
+    return "redirect:/profile";
   }
 
   @GetMapping("/posts/delete/{id}")
   public String deletePost(@PathVariable("id") long id) {
     postDao.deleteById(id);
-    return "redirect:/posts";
+    return "redirect:/profile";
   }
 
   @GetMapping("/posts/show/{id}")
